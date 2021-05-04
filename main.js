@@ -1,7 +1,7 @@
-$(document).ready(function(){
+$(document).ready(function(){ //ready methos used for fuction avaliablity/
 
-	$('.one-time').slick({
-  dots: true,
+	$('.one-time').slick({  
+  dots: true, //used for that slide show purpose,slick is a jquery plugin
   infinite: true,
   speed: 300,
   slidesToShow: 1,
@@ -17,12 +17,12 @@ $(document).ready(function(){
 	brand();
 	product();
 	function cat(){
-		$.ajax({
-			url: "action.php",
-			method: "POST",
-			data: {category:1},
-			success: function(data){
-				$('#get_cat').html(data);
+		$.ajax({ //ajax is about loading data in the background &display it on the webpage
+			url: "action.php", //it will load action.php page
+			method: "POST", // submits data to be preprocessed to be specified resource
+			data: {category:1}, //setting the category to 1(because it is alredy loaded in the db)
+			success: function(data){  //this is a function and itruns when the request succeds
+				$('#get_cat').html(data); //it is set content methods and it will match and display the data
 			}
 		})
 	}
@@ -49,9 +49,9 @@ $(document).ready(function(){
 		})
 	}
 
-	$("body").delegate(".category","click",function(event){
-		event.preventDefault();
-		var cid=$(this).attr('cid');
+	$("body").delegate(".category","click",function(event){ //body selects the element by the tag name,delegate attaches event handlers for specified elements
+		event.preventDefault(); //this stops the default action of an element from happening,means as we already set the category,so it won't redirect ino other pge
+		var cid=$(this).attr('cid'); //it returns attributes
 		$.ajax({
 			url: "action.php",
 			method: "POST",
@@ -114,7 +114,7 @@ $(document).ready(function(){
 			data: {userLogin:1,email:email, pwd:pwd},
 			success: function(data){
 				if(data=="true"){
-					window.location.href="profile.php";
+					window.location.href="profile.php"; //for redirecting
 				}
 			}
 		})
@@ -128,7 +128,7 @@ $(document).ready(function(){
 			method: 'POST',
 			data: {cartcount:1},
 			success: function(data){
-				$('.badge').html(data);
+				$('.badge').html(data); 
 				$('.badge').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 			}
 		})

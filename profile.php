@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['uid'])){
+	if(!isset($_SESSION['uid'])){ #if no value is stored,then again it is redirecting to index page
 	header('Location:index.php');
 	}
  ?>
@@ -9,9 +9,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Amaclone</title>
+	<title>Online Shopping Portal</title>
 	<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick.css"/>
-	<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/>
+	<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/> 
 	<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.6-dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="shortcut icon" href="assets/images/fav.png">
@@ -20,19 +20,19 @@
 	<div class="navbar navbar-default navbar-fixed-top"  id="topnav">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="index.php" class="navbar-brand">Amaclone</a>
+				<a href="index.php" class="navbar-brand">ShopIt</a>
 			</div>
 
 			<ul class="nav navbar-nav">
-			
+
 				<li style="width:300px;left:10px;top:10px;"><input type="text" class="form-control" id="search" name=""></li>
-				<li style="top:10px;left:20px;"><button class="btn btn-primary" id="search_btn" name=""><span class='glyphicon glyphicon-search'></span></button></li>
+				<li style="top:10px;left:20px;"><button class="btn btn-primary" id="search_btn" name=""><span class='glyphicon glyphicon-search'></span></button></li> <!--glypicon is for search symbol -->
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				<li id='shoppingcart'><a id="carticon" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-shopping-cart"></span>Cart <span class="badge">2</span>	</a>
 					<div class="dropdown-menu" style="width: 400px;">
-						<div class="panel panel-success">
+						<div class="panel panel-success"> <!--panel is for window-->
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-md-3"><strong>S. No.</strong></div>
@@ -55,7 +55,7 @@
 						</div>
 					</div>
 				</li>
-				<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>Hello, <?php echo $_SESSION['uname']; ?></a>
+				<li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>Hello, <?php echo $_SESSION['uname']; ?></a> <!--here it is displaying user name-->
 				<ul class="dropdown-menu">
 					<li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart-large"></span> Cart</a></li>
 					<li><a href="#">Change Password</a></li>
@@ -65,7 +65,7 @@
 				</li>
 
 				</ul>
-			
+
 		</div>
 	</div>
 	<br><br><br><br><br><br>
@@ -107,7 +107,7 @@
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-12" id="cartmsg">
-						
+
 					</div>
 				</div>
 				<div class="panel panel-info">
@@ -128,7 +128,7 @@
 							</div>
 						</div>-->
 					</div>
-					<div class="panel-footer">&copy; 2017</div>
+					<!-- <div class="panel-footer">&copy; 2017</div> -->
 				</div>
 			</div>
 			<div class="col-md-1"></div>
@@ -137,14 +137,14 @@
 			<div class="col-md-12">
 				<center>
 					<ul class='pagination' id='pageno'>
-						
+
 					</ul>
 				</center>
 			</div>
 
 
 			<!-- Modal -->
-				
+
 				<div class="modal fade" id="prod_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
@@ -157,7 +157,7 @@
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        
+
 				      </div>
 				    </div>
 				  </div>
@@ -176,4 +176,11 @@
 	<script src="assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 	<script src="main.js"></script>
 </body>
+<!--
+<div class="foot"><footer>
+<p> Brought To You By <a href="https://code-projects.org/">Code-Projects</a></p>
+</footer></div>
+<style> .foot{text-align: center;}
+</style>
+-->
 </html>

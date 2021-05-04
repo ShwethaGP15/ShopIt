@@ -1,16 +1,16 @@
 <?php 
 	session_start();
 	include('dbconnect.php');
-	if(isset($_POST["category"])){
+	if(isset($_POST["category"])){ #checking if the category is set
 		$category_query="SELECT * FROM categories";
-		$run_query=mysqli_query($conn,$category_query);
+		$run_query=mysqli_query($conn,$category_query); #Here PHP query is running, there are 3 steps to run a php query,1st is create a variable where we are writing the query. first we need to pass connection object and  category variable.stwp 2 is mysqli which is used o run the query and 3rd step is set asoc or fetch array ,where we will get the output line by line
 		echo "<div class='nav nav-pills nav-stacked'>
 					<li class='active'><a href='#'><h4>Categories</h4></a></li>";
-		if(mysqli_num_rows($run_query)){
-			while($row=mysqli_fetch_array($run_query)){
-				$cid=$row['cat_id'];
+		if(mysqli_num_rows($run_query)){  # num rows will tell number of rows of ouput,the advantage of this line is suppose there are 0 zeroes then it will not execute further lines and only category heading will get displayed.
+			while($row=mysqli_fetch_array($run_query)){ # we need to fetch each row,so we are using while loop,it is like for each,each time it will run for first it will display 1 electronics then 2 ladies wear etc
+				$cid=$row['cat_id']; #for accessing id and storing
 				$cat_name=$row['cat_title'];
-				echo "<li><a href='#' class='category' cid='$cid'>$cat_name</a></li>";
+				echo "<li><a href='#' class='category' cid='$cid'>$cat_name</a></li>"; #here we are displaying the cateogory always,so we already set that in db, we directly inserted the value in db,suppose if we want to add one mory category then we can add it in daatabase.
 			}
 			echo "</div>";
 		}
@@ -18,7 +18,7 @@
 	
 	if(isset($_POST["brand"])){
 		$category_query="SELECT * FROM brands";
-		$run_query=mysqli_query($conn,$category_query);
+		$run_query=mysqli_query($conn,$category_query); #same as cateogory, here we are displaying everything using php
 		echo "<div class='nav nav-pills nav-stacked'>
 					<li class='active'><a href='#'><h4>Brands</h4></a></li>";
 		if(mysqli_num_rows($run_query)){
@@ -32,33 +32,33 @@
 	}
 	if(isset($_POST['page']))
 	{
-		$sql="SELECT * FROM products";
-		$run_query=mysqli_query($conn,$sql);
-		$count=mysqli_num_rows($run_query);
-		$pageno=ceil($count/6);
+		$sql="SELECT * FROM products"; #selecting from products
+		$run_query=mysqli_query($conn,$sql); #running the query
+		$count=mysqli_num_rows($run_query); #counting the rows
+		$pageno=ceil($count/6); # Divide the no of rows by 6 just to show that in page there are 6 products,to get integer no of pages we are using ceil
 		for($i=1;$i<=$pageno;$i++)
 		{
 			echo "
-				<li><a href='#' page='$i' class='page'>$i</a></li>
-			";
+				<li><a href='#' page='$i' class='page'>$i</a></li> 
+			"; # to show 1,2,3 page no below the page
 		}
 	}
-	if(isset($_POST['getProduct'])){
+	if(isset($_POST['getProduct'])){ #everything is already set,so by default it will be true
 
-		$limit=	6;
-		if(isset($_POST['setPage'])){
-			$pageno=$_POST['pageNumber'];
-			$start=($pageno * $limit)-$limit;
+		$limit=	6; #one page is displaying 6
+		if(isset($_POST['setPage'])){ 
+			$pageno=$_POST['pageNumber']; #post is to pass the variable
+			$start=($pageno * $limit)-$limit; #by default our page no is 1 ,so it is 1*6-6=0, so start variable contains 0
 		}
-		else{$start=0;}
-		if(isset($_POST['price_sorted'])){
-			$product_query="SELECT * FROM products ORDER BY product_price";
+		else{$start=0;} #if start variable is not 0 then it is setting it to  0
+		if(isset($_POST['price_sorted'])){  #if price sort is clicked(index page 114 line)  then it will run the below query
+			$product_query="SELECT * FROM products ORDER BY product_price"; #Product price will display in ascending order
 		}
-		elseif(isset($_POST['pop_sorted'])){
+		elseif(isset($_POST['pop_sorted'])){ # this is for popularity sort, when user clicks on populaity it will display according to random popularity using random function
 			$product_query="SELECT * FROM products ORDER BY RAND()";
 		}
 		else{
-		$product_query="SELECT * FROM products LIMIT $start,$limit";
+		$product_query="SELECT * FROM products LIMIT $start,$limit"; #if user does not click on price sort or popularity,it will display all from table
 		}
 		$run_query=mysqli_query($conn,$product_query);
 		if(mysqli_num_rows($run_query)){
@@ -67,7 +67,7 @@
 				$pro_cat=$row['product_cat'];
 				$brand=$row['product_brand'];
 				$title=$row['product_title'];
-				$price=$row['product_price'];
+				$price=$row['product_price']; #to display all the products
 				$img=$row['product_image'];
 
 				echo "<div class='col-md-4'>
@@ -78,34 +78,34 @@
 									<img src='assets/prod_images/$img' style='width:200px; height:250px;' >
 								</a>
 								</div>
-								<div class='panel-heading'>Rs $price
+								<div class='panel-heading'>Rs $price            
 								<button pid='$pro_id' class='quicklook btn btn-danger btn-xs' style='float:right;'>Quick look</button>&nbsp;
 								<button pid='$pro_id' class='product btn btn-danger btn-xs' style='float:right;'>Add to Cart</button>
 								</div>
 							</div></div>";
-			}
+			} #bootstrap for all these
 		}
 	}
 
-	if(isset($_POST['get_selected_Category']) || isset($_POST['get_selected_brand']) || isset($_POST['search']) || isset($_POST['price_sorted']))
+	if(isset($_POST['get_selected_Category']) || isset($_POST['get_selected_brand']) || isset($_POST['search']) || isset($_POST['price_sorted'])) #checking what is clicked by user
 	{
-		if(isset($_POST['get_selected_Category'])){
+		if(isset($_POST['get_selected_Category'])){  #selecting from category
 			$cid=$_POST['cat_id'];
 			$sql="SELECT * FROM products WHERE product_cat=$cid";
 		}
-		elseif(isset($_POST['get_selected_brand'])){
+		elseif(isset($_POST['get_selected_brand'])){ #selecting from brand
 			$bid=$_POST['brand_id'];
 			$sql="SELECT * FROM products WHERE product_brand=$bid";
-			if(isset($_POST['price_sorted'])){
+		}
+		elseif(isset($_POST['price_sorted'])){
 			$sql="SELECT * FROM products ORDER BY product_price";
 			}
-		}
-		elseif(isset($_POST['search'])){
+		elseif(isset($_POST['search'])){ #if serach is clicked,it is taking it as a keyword and matching with the products 
 			$keyword=$_POST['keyword'];
 			$sql="SELECT * FROM products WHERE product_keywords LIKE '%$keyword%'";
-			if(isset($_POST['price_sorted'])){
-			$sql="SELECT * FROM products ORDER BY product_price";
 		}
+		elseif(isset($_POST['price_sorted'])){
+			$sql="SELECT * FROM products ORDER BY product_price";
 		}
 		$run_query=mysqli_query($conn,$sql);
 		while($row=mysqli_fetch_array($run_query)){

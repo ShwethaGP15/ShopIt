@@ -1,27 +1,27 @@
-<?php 
-	session_start();
-	if(isset($_SESSION['uid'])){
-		header('location:profile.php');
+<?php
+	session_start(); #whenever person logins,then the session will start, in our page there is hello user name, for that we need session 
+	if(isset($_SESSION['uid'])){ #uid is session variable,suppose there are 2 users names user1 and user2,whenever one person login then in place of uid 1 will store.when the user logouts, uid will be null, isset will say whether the value is null 
+		header('location:profile.php');#if any value is stored in uid then,it will redirect to profile,if nobody is login it will be index page
 	}
  ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Amaclone</title>
+	<title>Online Shopping Portal</title>
 	<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/>
 	<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.6-dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	
+
 </head>
 <body>
-	
+
 
 	<div class="navbar navbar-default navbar-fixed-top" id="topnav">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="index.php" class="navbar-brand">Amaclone</a>
+				<a href="index.php" class="navbar-brand">ShopIt</a>
 			</div>
 
 			<ul class="nav navbar-nav">
@@ -57,14 +57,14 @@
 								<label for="email">Password</label>
 								<input type="password" class="form-control" id="password">
 								<p><br></p>
-								<a href="#" style="color: white;list-style-type: none;">Forgot Password?</a>
+								
 								<input type="submit" class="btn btn-success" style="float: right;bottom:12px;" id="login" value="Login" name="">
 							</div>
 							<div class="panel-footer" id="e_msg"></div>
 						</div>
 					</div>
 				</ul>
-				
+
 				<li><a href="customer_registration.php">Sign Up</a></li>
 			</ul>
 		</div>
@@ -105,7 +105,7 @@
 			<div class="col-md-8">
 			<div class="row">
 					<div class="col-md-12" id="cartmsg">
-						
+
 					</div>
 				</div>
 				<div class="panel panel-info">
@@ -126,7 +126,7 @@
 							</div>
 						</div>-->
 					</div>
-					<div class="panel-footer">&copy; 2017</div>
+					<!--<div class="panel-footer">&copy; 2017</div> -->
 				</div>
 			</div>
 			<div class="col-md-1"></div>
@@ -134,14 +134,14 @@
 		<div class="row">
 			<div class="col-md-12">
 				<center>
-					<ul class='pagination' id='pageno'>
-						
+					<ul class='pagination' id='pageno'> <!--this is for numbers below page-->
+
 					</ul>
 				</center>
 			</div>
 
 			<!-- Modal -->
-				
+
 				<div class="modal fade" id="prod_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
@@ -154,7 +154,7 @@
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        
+
 				      </div>
 				    </div>
 				  </div>
@@ -173,4 +173,10 @@
 	<script src="assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 	<script src="main.js"></script>
 </body>
+
+<!--<div class="foot"><footer>
+<p> Brought To You By <a href="https://code-projects.org/">Code-Projects</a></p>
+</footer></div>
+<style> .foot{text-align: center;}
+</style>-->
 </html>

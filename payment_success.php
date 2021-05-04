@@ -15,7 +15,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Amaclone</title>
+	<title>Online Shopping Portal</title>
 	<link rel="stylesheet" type="text/css" href="assets/bootstrap-3.3.6-dist/css/bootstrap.css">
 	<style type="text/css">
 		.content{
@@ -28,7 +28,7 @@
 		<div class="navbar navbar-default navbar-fixed-top" id="topnav">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="index.php" class="navbar-brand">Amaclone</a>
+				<a href="index.php" class="navbar-brand">ShopIt</a>
 			</div>
 
 			
@@ -43,7 +43,7 @@
   				<div class="panel-heading"><h1>Thank you!</h1></div>
   				<div class="panel-body">
     				Hello <?php echo $_SESSION['uname']; ?>, your payment is successful.
-    				<br>Your Transaction ID is <?php echo $trid; ?> 
+    				<!--<br>Your Transaction ID is <?php echo $trid; ?> -->
     				<br>You can continue with your shopping.
     				<p></p>
     				<a href="profile.php" class='btn btn-success btn-lg'>Back to store</a>
